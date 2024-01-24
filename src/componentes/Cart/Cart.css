@@ -1,17 +1,4 @@
-.order-container {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-}
-
-.product-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 50px;
-    margin-right: 100px;
-    margin-left: 80px;
-}
-
-/* .summary-container {
+.summary-container {
     text-align: justify;
     background-color: rgba(255, 153, 0, 0.30);
     padding-left: 30px;
@@ -19,6 +6,8 @@
     flex-direction: column;
     gap: 50px;
     padding-top: 50px;
+    position: sticky;
+    top: 0;
 }
 
 .clear-btn {
@@ -38,4 +27,4 @@
     font-size: 17px;
     color: white;
     border: none;
-} */
+}
