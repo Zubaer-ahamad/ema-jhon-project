@@ -13,31 +13,25 @@ const Products = () => {
             .then(data => setProducts(data))
     }, [])
 
-    useEffect( () => {
-        const storedCart = getShoppingCart();
-        const saveCart = [];
-        //step-1: Get Id
-        for(const id in storedCart){
-        // Step-2: Get The Product Using ID
-        const addedProduct = products.find(product => product.id === id);
-        // console.log(addedProduct);
-        if(addedProduct){
-            //step-3 Add Quantity
-            const quantity = storedCart[id];
-            addedProduct.quantity = quantity;
-            // Step-4 Add the product save cart
-            saveCart.push(addedProduct);
-        }
-        // step-5 Set The Cart 
-        setCart(saveCart);
-    }
-    } , [products])
-
     const handelAddToCart = (product) => {
         const newCart = [...cart, product];
         setCart(newCart);
         addToDb(product.id);
     }
+
+    useEffect(() =>{
+        const storedCart = getShoppingCart();
+        const saveCart = [];
+        for(const id in storedCart){
+            const addedProduct = products.find(product => product.id === id);
+            if(addedProduct){
+                const quantity = storedCart[id];
+                addedProduct.quantity = quantity;
+                saveCart.push(addedProduct);
+            }
+            setCart(saveCart);
+        }
+    }, [products])
 
     return (
         <div className='order-container'>

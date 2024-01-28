@@ -2,13 +2,14 @@ import React from 'react';
 import './Cart.css'
 
 const Cart = ({cart}) => {
-    
     let total  = 0;
     let totalShipping = 0;
     let quantity = 0;
     for(const product of cart){
+        if(product.quantity === 0){
+            product.quantity = 1;
+        }
         // console.log(product.price)
-        product.quantity = product.quantity || 1;
         total = total + product.price * product.quantity;
         totalShipping = totalShipping + product.shipping * product.quantity;
         quantity = quantity + product.quantity;
@@ -22,10 +23,10 @@ const Cart = ({cart}) => {
         <div className='summary-container'>
             <h1>Order summary</h1>
             {/* <p>Selected Items: {cart.length}</p> */}
-            <p>Selected Items: {quantity}</p>
-            <p>Total Price: ${total}</p>
-            <p>Total Shipping Charge: ${totalShipping}</p>
-            <p>Tax: ${tax.toFixed(2)}</p>
+            <h3>Selected Items: {quantity}</h3>
+            <h3>Total Price: ${total}</h3>
+            <h3>Total Shipping Charge: ${totalShipping}</h3>
+            <h3>Tax: ${tax.toFixed(2)}</h3>
             <h2>Grand Total: ${grandTotal.toFixed(2)}</h2>
             <button className='clear-btn'>Clear Cart</button>
             <button className='review-btn'>Review Order</button>
